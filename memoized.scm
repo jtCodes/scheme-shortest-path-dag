@@ -126,16 +126,14 @@
   (define minnodes (make-table))
 
 
-  (define count 0)
+  ;;(define count 0) for comparing memoized vs naive
   ;; Takes a node and find the min cost of that node
   ;; along with its path. 
   (define (cost node)
-    (set! count (+ count 1))
+    ;(set! count (+ count 1))
     (define (iter things result)
       (cond ((null? things)      ;end of a the list of children
 	     (let ((minnode (get-min result))) ;get the min child
-	       (display minnode)
-	       (newline)
 	       (cond ((pair? (cadr minnode)) ;for cases such as
 					     ;(77 (b4 . b16) b16 . end)
 		      (oned-insert! (caadr minnode) minnode minnodes))
